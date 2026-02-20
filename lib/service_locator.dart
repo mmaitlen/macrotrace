@@ -38,7 +38,7 @@ Future<void> init() async {
 
   // Services
   sl.registerLazySingleton<DateTimeService>(
-    () => SystemDateTimeService(),
+    () => SystemDateTimeService(getNow: DateTime.now),
   ); // Register DateTimeService
 
   // Initialize data source
