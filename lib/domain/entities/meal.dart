@@ -4,10 +4,7 @@ class Meal {
   final DateTime timestamp;
   final List<MealEntry> entries;
 
-  Meal({
-    required this.timestamp,
-    required this.entries,
-  });
+  Meal({required this.timestamp, required this.entries});
 
   factory Meal.fromJson(Map<String, dynamic> json) {
     return Meal(

@@ -8,6 +8,7 @@ import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
+import 'package:intl/intl.dart';
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetAllMeals _getAllMeals;
@@ -18,20 +19,17 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     required GetAllMeals getAllMeals,
     required GetFoodItems getFoodItems,
     required GetDailySummary getDailySummary,
-  })  : _getAllMeals = getAllMeals,
-        _getFoodItems = getFoodItems,
-        _getDailySummary = getDailySummary,
-        super(const MealsState()) {
+  }) : _getAllMeals = getAllMeals,
+       _getFoodItems = getFoodItems,
+       _getDailySummary = getDailySummary,
+       super(const MealsState()) {
     on<LoadMeals>(_onLoadMeals);
   }
 
   Future<void> _onLoadMeals(LoadMeals event, Emitter<MealsState> emit) async {
     emit(state.copyWith(status: MealsStatus.loading));
     try {
-      final results = await Future.wait([
-        _getAllMeals(),
-        _getFoodItems(),
-      ]);
+      final results = await Future.wait([_getAllMeals(), _getFoodItems()]);
 
       final allMeals = results[0] as List<Meal>;
       final foodItems = results[1] as List<FoodItem>;
@@ -49,28 +47,57 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
 
       // Create DailyMeals objects with summaries
       final List<DailyMeals> dailyMeals = [];
+      final now = DateUtils.dateOnly(DateTime.now());
+      final yesterday = DateUtils.dateOnly(
+        DateTime.now().subtract(const Duration(days: 1)),
+      );
+
       for (final date in grouped.keys) {
         final mealsForDay = grouped[date]!;
         final summary = _getDailySummary(
           mealsForDay: mealsForDay,
           allFoodItems: foodItems,
         );
-        dailyMeals.add(DailyMeals(date: date, meals: mealsForDay, summary: summary));
-      }
-      
-      // Sort days descending
-      dailyMeals.sort((a,b) => b.date.compareTo(a.date));
 
-      emit(state.copyWith(
-        status: MealsStatus.success,
-        dailyMeals: dailyMeals,
-        foodItemMap: foodItemMap,
-      ));
+        String formattedDate;
+        if (date == now) {
+          formattedDate = 'Today';
+        } else if (date == yesterday) {
+          formattedDate = 'Yesterday';
+        } else {
+          formattedDate = DateFormat.yMMMd().format(date);
+        }
+
+        dailyMeals.add(
+          DailyMeals(
+            date: date,
+            meals: mealsForDay,
+            summary: summary,
+            formattedDate: formattedDate,
+            protienPointTotal: summary['protein'] ?? 0,
+            carbohydratePointTotal: summary['carbohydrate'] ?? 0,
+            fatPointTotal: summary['fat'] ?? 0,
+          ),
+        );
+      }
+
+      // Sort days descending
+      dailyMeals.sort((a, b) => b.date.compareTo(a.date));
+
+      emit(
+        state.copyWith(
+          status: MealsStatus.success,
+          dailyMeals: dailyMeals,
+          foodItemMap: foodItemMap,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        status: MealsStatus.failure,
-        error: 'Failed to load meals: $e',
-      ));
+      emit(
+        state.copyWith(
+          status: MealsStatus.failure,
+          error: 'Failed to load meals: $e',
+        ),
+      );
     }
   }
 }

@@ -18,7 +18,7 @@ class MealListItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,7 +26,6 @@ class MealListItem extends StatelessWidget {
               'Meal at ${DateFormat.jm().format(meal.timestamp)}',
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            const SizedBox(height: 8),
             ...meal.entries.map((entry) {
               final foodItem = foodItemMap[entry.foodId];
               if (foodItem == null) {
@@ -35,10 +34,12 @@ class MealListItem extends StatelessWidget {
               final amount = entry.points * foodItem.measurementAmount;
               return ListTile(
                 title: Text(foodItem.name),
-                subtitle: Text('${amount.toStringAsFixed(1)} ${foodItem.measurementUnit}'),
+                subtitle: Text(
+                  '${amount.toStringAsFixed(1)} ${foodItem.measurementUnit}',
+                ),
                 trailing: Text('${entry.points.toStringAsFixed(1)} pts'),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

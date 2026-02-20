@@ -11,16 +11,17 @@ class MealsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('MacroTrace'),
-      ),
+      appBar: AppBar(title: const Text('MacroTrace')),
       body: BlocBuilder<MealsBloc, MealsState>(
         builder: (context, state) {
-          if (state.status == MealsStatus.loading || state.status == MealsStatus.initial) {
+          if (state.status == MealsStatus.loading ||
+              state.status == MealsStatus.initial) {
             return const Center(child: CircularProgressIndicator());
           }
           if (state.status == MealsStatus.failure) {
-            return Center(child: Text(state.error ?? 'An unknown error occurred.'));
+            return Center(
+              child: Text(state.error ?? 'An unknown error occurred.'),
+            );
           }
           if (state.status == MealsStatus.success && state.dailyMeals.isEmpty) {
             return const Center(child: Text('No meals logged yet.'));
@@ -30,12 +31,22 @@ class MealsScreen extends StatelessWidget {
             itemCount: state.dailyMeals.length,
             itemBuilder: (context, index) {
               final dailyMeals = state.dailyMeals[index];
+              final formattedSummary =
+                  "P: ${dailyMeals.protienPointTotal.toStringAsFixed(1)} - C: ${dailyMeals.carbohydratePointTotal.toStringAsFixed(1)} - F: ${dailyMeals.fatPointTotal.toStringAsFixed(1)}";
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DateHeader(date: dailyMeals.date, summary: dailyMeals.summary),
-                  ...dailyMeals.meals.map((meal) => MealListItem(meal: meal, foodItemMap: state.foodItemMap)),
+                  DateHeader(
+                    formattedDate: dailyMeals.formattedDate,
+                    formattedSummary: formattedSummary,
+                  ),
+                  ...dailyMeals.meals.map(
+                    (meal) => MealListItem(
+                      meal: meal,
+                      foodItemMap: state.foodItemMap,
+                    ),
+                  ),
                 ],
               );
             },
