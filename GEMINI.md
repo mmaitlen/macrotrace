@@ -82,11 +82,13 @@ If a task or todo I'm working on feels like a red herring, I'll ask the user for
 
 ## Branch cleanup
 
-- When a task has been completed and ready to close utilize the following points to clean up the branch
-- Before cleaning up a branch, double check that the PR has been approved
-- Delete the local branch, but NEVER delete the remote branch unless specifically asked to so by the repository owner
-- Ensure you end up on the default branch of the repository
-- Finally, inform the user that the task is complete by specifically stating "okie dokie task X is complete and branch Y is cleaned up", where X is a short description of the task and Y is the name of the closed branch
+- When a task has been completed and a Pull Request has been created, **DO NOT delete the local branch immediately**.
+- **Stay on the feature branch** until the Pull Request has been **Approved** and merged into the default branch. This allows for any further changes or fixes requested during the review process to be easily applied.
+- Once the PR is approved and merged, you can then:
+    - Delete the local branch (e.g., `git checkout <default-branch> && git branch -D <feature-branch>`).
+    - NEVER delete the remote branch unless explicitly asked to by the repository owner.
+    - Ensure you end up on the default branch of the repository.
+- Finally, inform the user that the task is complete by specifically stating "okie dokie task X is complete and branch Y is closed, I'm ready for the next task." (where Y is the name of the **merged** branch, implying the local branch has been cleaned up).
 
 ---
 
