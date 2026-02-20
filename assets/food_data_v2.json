@@ -1,0 +1,961 @@
+[
+  {
+    "id": "turkey_breast",
+    "name": "Turkey breast",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ground_turkey",
+    "name": "Ground turkey",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "veal",
+    "name": "Veal",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ground_beef",
+    "name": "Ground beef",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "canadian_bacon",
+    "name": "Canadian bacon",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "corned_beef",
+    "name": "Corned beef",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "duck",
+    "name": "Duck",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ham",
+    "name": "Ham",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "lamb",
+    "name": "Lamb",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ground_lamb",
+    "name": "Ground lamb",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "pork",
+    "name": "Pork",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ground_pork",
+    "name": "Ground pork",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "calamari",
+    "name": "Calamari",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "catfish",
+    "name": "Catfish",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "clams",
+    "name": "Clams",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "crabmeat",
+    "name": "Crabmeat",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "flounder_sole",
+    "name": "Flounder/sole",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "lobster",
+    "name": "Lobster",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "salmon",
+    "name": "Salmon",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "sardines",
+    "name": "Sardines",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "scallops",
+    "name": "Scallops",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "shrimp",
+    "name": "Shrimp",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "swordfish",
+    "name": "Swordfish",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "tuna_steak",
+    "name": "Tuna steak",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "canned_tuna",
+    "name": "Canned tuna",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "protein_powder",
+    "name": "Protein powder",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "seitan",
+    "name": "Seitan",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "soy_burgers",
+    "name": "Soy burgers",
+    "measurement_amount": 0.5,
+    "measurement_unit": "patty",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "soy_sausage",
+    "name": "Soy sausage",
+    "measurement_amount": 2.0,
+    "measurement_unit": "links",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "spirulina_dried",
+    "name": "Spirulina (dried)",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "soy_cheese",
+    "name": "Soy cheese",
+    "measurement_amount": 2.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "firm_tofu",
+    "name": "Firm tofu",
+    "measurement_amount": 3.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "soft_tofu",
+    "name": "Soft tofu",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "whole_egg",
+    "name": "Whole egg",
+    "measurement_amount": 1.0,
+    "measurement_unit": "large",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "egg_whites",
+    "name": "Egg whites",
+    "measurement_amount": 2.0,
+    "measurement_unit": "large",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "egg_substitute",
+    "name": "Egg substitute",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "cottage_cheese",
+    "name": "Cottage cheese",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "feta_cheese",
+    "name": "Feta cheese",
+    "measurement_amount": 1.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "ricotta_cheese",
+    "name": "Ricotta cheese",
+    "measurement_amount": 2.0,
+    "measurement_unit": "oz",
+    "macro_types": ["protein"]
+  },
+  {
+    "id": "oatmeal",
+    "name": "Oatmeal",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "artichoke",
+    "name": "Artichoke",
+    "measurement_amount": 1.0,
+    "measurement_unit": "small",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "asparagus",
+    "name": "Asparagus",
+    "measurement_amount": 12.0,
+    "measurement_unit": "spears",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "beet_greens",
+    "name": "Beet greens",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "black_beans",
+    "name": "Black beans",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "bok_choy",
+    "name": "Bok choy",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "brussels_sprouts",
+    "name": "Brussels sprouts",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "cabbage",
+    "name": "Cabbage",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "carrots",
+    "name": "Carrots",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "chick_peas",
+    "name": "Chick peas",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "collard_greens",
+    "name": "Collard greens",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "dill_pickles",
+    "name": "Dill pickles",
+    "measurement_amount": 3.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "eggplant",
+    "name": "Eggplant",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "fava_beans",
+    "name": "Fava beans",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "kidney_beans",
+    "name": "Kidney beans",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "leeks",
+    "name": "Leeks",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "lentils",
+    "name": "Lentils",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "mushrooms",
+    "name": "Mushrooms",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "okra",
+    "name": "Okra",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "onions",
+    "name": "Onions",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "sauerkraut",
+    "name": "Sauerkraut",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "spaghetti_squash",
+    "name": "Spaghetti squash",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "swiss_chard",
+    "name": "Swiss chard",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "tomato_sauce",
+    "name": "Tomato sauce",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "tomatoes",
+    "name": "Tomatoes",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "yellow_squash",
+    "name": "Yellow squash",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "zucchini",
+    "name": "Zucchini",
+    "measurement_amount": 1.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "alfalfa_sprouts",
+    "name": "Alfalfa sprouts",
+    "measurement_amount": 7.5,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "bean_sprouts",
+    "name": "Bean sprouts",
+    "measurement_amount": 3.0,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "celery",
+    "name": "Celery",
+    "measurement_amount": 2.0,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "measurement_amount": 2.0,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "lettuce_iceberg",
+    "name": "Lettuce, iceberg",
+    "measurement_amount": 1.0,
+    "measurement_unit": "head",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "lettuce_romaine",
+    "name": "Lettuce, romaine",
+    "measurement_amount": 6.0,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "peppers",
+    "name": "Peppers",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "radishes",
+    "name": "Radishes",
+    "measurement_amount": 2.0,
+    "measurement_unit": "cups",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "salsa",
+    "name": "Salsa",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "snow_peas",
+    "name": "Snow peas",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "measurement_amount": 1.0,
+    "measurement_unit": "small",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "apple_sauce",
+    "name": "Apple sauce",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "apricots",
+    "name": "Apricots",
+    "measurement_amount": 3.0,
+    "measurement_unit": "small",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "blackberries",
+    "name": "Blackberries",
+    "measurement_amount": 0.75,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "cantaloupe",
+    "name": "Cantaloupe",
+    "measurement_amount": 0.25,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "cherries",
+    "name": "Cherries",
+    "measurement_amount": 7.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "fruit_cocktail",
+    "name": "Fruit cocktail",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "grapes",
+    "name": "Grapes",
+    "measurement_amount": 12.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "grapefruit",
+    "name": "Grapefruit",
+    "measurement_amount": 0.5,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "honeydew",
+    "name": "Honeydew",
+    "measurement_amount": 0.125,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "kiwi",
+    "name": "Kiwi",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "lemon",
+    "name": "Lemon",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "lime",
+    "name": "Lime",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "nectarine",
+    "name": "Nectarine",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "orange_2-1_2_in",
+    "name": "Orange (2-1/2 in)",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "peach",
+    "name": "Peach",
+    "measurement_amount": 1.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "pear",
+    "name": "Pear",
+    "measurement_amount": 0.5,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "plum",
+    "name": "Plum",
+    "measurement_amount": 2.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "raspberries",
+    "name": "Raspberries",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "strawberries",
+    "name": "Strawberries",
+    "measurement_amount": 1.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "tangerine",
+    "name": "Tangerine",
+    "measurement_amount": 2.0,
+    "measurement_unit": "each",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "measurement_amount": 1.25,
+    "measurement_unit": "cup",
+    "macro_types": ["carbohydrate"]
+  },
+  {
+    "id": "almonds",
+    "name": "Almonds",
+    "measurement_amount": 6.0,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "walnuts_pecans_handwritten",
+    "name": "Walnuts / Pecans (handwritten)",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "measurement_amount": 0.125,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "canola_oil",
+    "name": "Canola oil",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "macadamia_nuts",
+    "name": "Macadamia nuts",
+    "measurement_amount": 3.0,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "olives",
+    "name": "Olives",
+    "measurement_amount": 5.0,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "peanut_butter",
+    "name": "Peanut butter",
+    "measurement_amount": 1.5,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "peanuts",
+    "name": "Peanuts",
+    "measurement_amount": 10.0,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "cashews",
+    "name": "Cashews",
+    "measurement_amount": 6.0,
+    "measurement_unit": "each",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "peanut_oil",
+    "name": "Peanut oil",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "olive_oil",
+    "name": "Olive oil",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "tahini",
+    "name": "Tahini",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "guacamole",
+    "name": "Guacamole",
+    "measurement_amount": 2.0,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "vegetable_oil",
+    "name": "Vegetable oil",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "mayonnaise_light",
+    "name": "Mayonnaise (light)",
+    "measurement_amount": 2.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "mayonnaise_regular",
+    "name": "Mayonnaise (regular)",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "mayo_light",
+    "name": "Mayo, light",
+    "measurement_amount": 2.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "sesame_oil",
+    "name": "Sesame oil",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "sunflower_seeds",
+    "name": "Sunflower seeds",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "bacon_bits",
+    "name": "Bacon bits",
+    "measurement_amount": 0.5,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "butter",
+    "name": "Butter",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "half_and_half",
+    "name": "Half and half",
+    "measurement_amount": 1.5,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "cream_cheese",
+    "name": "Cream cheese",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "cream_light",
+    "name": "Cream, light",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "sour_cream",
+    "name": "Sour cream",
+    "measurement_amount": 2.0,
+    "measurement_unit": "tbsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "tartar_sauce",
+    "name": "Tartar sauce",
+    "measurement_amount": 1.5,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "lard",
+    "name": "Lard",
+    "measurement_amount": 1.0,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "veg_shortening",
+    "name": "Veg. shortening",
+    "measurement_amount": 0.25,
+    "measurement_unit": "tsp",
+    "macro_types": ["fat"]
+  },
+  {
+    "id": "milk",
+    "name": "Milk",
+    "measurement_amount": 1.0,
+    "measurement_unit": "cup",
+    "macro_types": ["protein", "carbohydrate"]
+  },
+  {
+    "id": "yogurt",
+    "name": "Yogurt",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["protein", "carbohydrate"]
+  },
+  {
+    "id": "soybean",
+    "name": "Soybean",
+    "measurement_amount": 0.25,
+    "measurement_unit": "cup",
+    "macro_types": ["protein", "carbohydrate"]
+  },
+  {
+    "id": "soymilk",
+    "name": "Soymilk",
+    "measurement_amount": 0.5,
+    "measurement_unit": "cup",
+    "macro_types": ["protein", "carbohydrate"]
+  },
+  {
+    "id": "tempeh",
+    "name": "Tempeh",
+    "measurement_amount": 1.5,
+    "measurement_unit": "oz",
+    "macro_types": ["protein", "carbohydrate"]
+  }
+]
