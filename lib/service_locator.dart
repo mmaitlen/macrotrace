@@ -7,14 +7,20 @@ import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
+import 'package:macrotrace/domain/services/date_time_service.dart'; // New import
+import 'package:macrotrace/data/services/system_date_time_service.dart'; // New import
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   // BLoC
   sl.registerFactory(
-    () =>
-        MealsBloc(getAllMeals: sl(), getFoodItems: sl(), getDailySummary: sl()),
+    () => MealsBloc(
+      getAllMeals: sl(),
+      getFoodItems: sl(),
+      getDailySummary: sl(),
+      dateTimeService: sl(), // Provide DateTimeService
+    ),
   );
 
   // Use cases
@@ -29,6 +35,11 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<LocalDataSource>(() => InMemoryDataSource());
+
+  // Services
+  sl.registerLazySingleton<DateTimeService>(
+    () => SystemDateTimeService(),
+  ); // Register DateTimeService
 
   // Initialize data source
   await sl<LocalDataSource>().init();
