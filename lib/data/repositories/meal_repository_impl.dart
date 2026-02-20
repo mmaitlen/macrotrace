@@ -12,7 +12,7 @@ class MealRepositoryImpl implements MealRepository {
   Future<List<Meal>> getAllMeals() {
     return localDataSource.getAllMeals();
   }
-  
+
   @override
   Future<List<FoodItem>> getFoodItems() {
     return localDataSource.getFoodItems();

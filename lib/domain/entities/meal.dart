@@ -1,13 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
 
-class Meal {
+class Meal extends Equatable {
   final DateTime timestamp;
   final List<MealEntry> entries;
 
-  Meal({
-    required this.timestamp,
-    required this.entries,
-  });
+  const Meal({required this.timestamp, required this.entries});
 
   factory Meal.fromJson(Map<String, dynamic> json) {
     return Meal(
@@ -17,4 +15,7 @@ class Meal {
           .toList(),
     );
   }
+
+  @override
+  List<Object?> get props => [timestamp, entries];
 }

@@ -36,7 +36,12 @@ class InMemoryDataSource implements LocalDataSource {
         ],
       ),
       Meal(
-        timestamp: DateTime(yesterday.year, yesterday.month, yesterday.day, 13), // Lunch
+        timestamp: DateTime(
+          yesterday.year,
+          yesterday.month,
+          yesterday.day,
+          13,
+        ), // Lunch
         entries: [
           MealEntry(foodId: 'ground_turkey', points: 4),
           MealEntry(foodId: 'broccoli', points: 1),

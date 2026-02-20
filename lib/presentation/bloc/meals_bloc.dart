@@ -8,30 +8,33 @@ import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
+import 'package:intl/intl.dart';
+import 'package:macrotrace/domain/services/date_time_service.dart';
+import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart'; // New import
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetAllMeals _getAllMeals;
   final GetFoodItems _getFoodItems;
   final GetDailySummary _getDailySummary;
+  final DateTimeService _dateTimeService;
 
   MealsBloc({
     required GetAllMeals getAllMeals,
     required GetFoodItems getFoodItems,
     required GetDailySummary getDailySummary,
-  })  : _getAllMeals = getAllMeals,
-        _getFoodItems = getFoodItems,
-        _getDailySummary = getDailySummary,
-        super(const MealsState()) {
+    required DateTimeService dateTimeService,
+  }) : _getAllMeals = getAllMeals,
+       _getFoodItems = getFoodItems,
+       _getDailySummary = getDailySummary,
+       _dateTimeService = dateTimeService,
+       super(const MealsState()) {
     on<LoadMeals>(_onLoadMeals);
   }
 
   Future<void> _onLoadMeals(LoadMeals event, Emitter<MealsState> emit) async {
     emit(state.copyWith(status: MealsStatus.loading));
     try {
-      final results = await Future.wait([
-        _getAllMeals(),
-        _getFoodItems(),
-      ]);
+      final results = await Future.wait([_getAllMeals(), _getFoodItems()]);
 
       final allMeals = results[0] as List<Meal>;
       final foodItems = results[1] as List<FoodItem>;
@@ -47,30 +50,64 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
         grouped[date]!.add(meal);
       }
 
-      // Create DailyMeals objects with summaries
-      final List<DailyMeals> dailyMeals = [];
+      // Create pure DailyMeals domain entities
+      final List<DailyMeals> pureDailyMeals = [];
       for (final date in grouped.keys) {
         final mealsForDay = grouped[date]!;
         final summary = _getDailySummary(
           mealsForDay: mealsForDay,
           allFoodItems: foodItems,
         );
-        dailyMeals.add(DailyMeals(date: date, meals: mealsForDay, summary: summary));
+        pureDailyMeals.add(
+          DailyMeals(date: date, meals: mealsForDay, summary: summary),
+        );
       }
-      
-      // Sort days descending
-      dailyMeals.sort((a,b) => b.date.compareTo(a.date));
 
-      emit(state.copyWith(
-        status: MealsStatus.success,
-        dailyMeals: dailyMeals,
-        foodItemMap: foodItemMap,
-      ));
+      // Sort pureDailyMeals descending by date
+      pureDailyMeals.sort((a, b) => b.date.compareTo(a.date));
+
+      // Transform pure DailyMeals into DailyMealsUIModel
+      final List<DailyMealsUIModel> dailyMealsUIModels = [];
+      final now = _dateTimeService.getToday();
+      final yesterday = _dateTimeService.getYesterday();
+
+      for (final dailyMeals in pureDailyMeals) {
+        String formattedDate;
+        if (DateUtils.isSameDay(dailyMeals.date, now)) {
+          formattedDate = 'Today';
+        } else if (DateUtils.isSameDay(dailyMeals.date, yesterday)) {
+          formattedDate = 'Yesterday';
+        } else {
+          formattedDate = DateFormat.yMMMd().format(dailyMeals.date);
+        }
+
+        final formattedSummary =
+            "P: ${dailyMeals.summary['protein']?.toStringAsFixed(1) ?? '0'} C: ${dailyMeals.summary['carbohydrate']?.toStringAsFixed(1) ?? '0'} F: ${dailyMeals.summary['fat']?.toStringAsFixed(1) ?? '0'}";
+
+        dailyMealsUIModels.add(
+          DailyMealsUIModel(
+            dailyMeals: dailyMeals,
+            formattedDate: formattedDate,
+            formattedSummary: formattedSummary,
+            foodItemMap:
+                foodItemMap, // Passed to UIModel as it's needed for MealListItem
+          ),
+        );
+      }
+
+      emit(
+        state.copyWith(
+          status: MealsStatus.success,
+          dailyMeals: dailyMealsUIModels,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        status: MealsStatus.failure,
-        error: 'Failed to load meals: $e',
-      ));
+      emit(
+        state.copyWith(
+          status: MealsStatus.failure,
+          error: 'Failed to load meals: $e',
+        ),
+      );
     }
   }
 }

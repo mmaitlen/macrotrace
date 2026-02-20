@@ -1,11 +1,10 @@
-class MealEntry {
+import 'package:equatable/equatable.dart';
+
+class MealEntry extends Equatable {
   final String foodId;
   final double points;
 
-  MealEntry({
-    required this.foodId,
-    required this.points,
-  });
+  const MealEntry({required this.foodId, required this.points});
 
   factory MealEntry.fromJson(Map<String, dynamic> json) {
     return MealEntry(
@@ -13,4 +12,7 @@ class MealEntry {
       points: (json['points'] as num).toDouble(),
     );
   }
+
+  @override
+  List<Object?> get props => [foodId, points];
 }
