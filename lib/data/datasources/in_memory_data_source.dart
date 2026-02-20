@@ -19,38 +19,17 @@ class InMemoryDataSource implements LocalDataSource {
   Future<void> _loadFoodItems() async {
     final jsonString = await rootBundle.loadString('assets/food_data_v2.json');
     final List<dynamic> jsonList = json.decode(jsonString) as List;
-    _foodItems = jsonList
-        .map((json) => FoodItem.fromJson(json as Map<String, dynamic>))
-        .toList();
+    _foodItems = jsonList.map((json) => FoodItem.fromJson(json as Map<String, dynamic>)).toList();
   }
 
   void _generateHardcodedMeals() {
     final today = DateTime.now();
     final yesterday = today.subtract(const Duration(days: 1));
-    final dayBeforeYesterday = today.subtract(const Duration(days: 2));
 
     _meals.addAll([
-      Meal(
-        timestamp: DateTime(
-          dayBeforeYesterday.year,
-          dayBeforeYesterday.month,
-          dayBeforeYesterday.day,
-          8,
-        ), // Breakfast
-        entries: [
-          MealEntry(foodId: 'whole_egg', points: 2),
-          MealEntry(foodId: 'oatmeal', points: 1),
-        ],
-      ),
-
       // Yesterday's Meals
       Meal(
-        timestamp: DateTime(
-          yesterday.year,
-          yesterday.month,
-          yesterday.day,
-          8,
-        ), // Breakfast
+        timestamp: DateTime(yesterday.year, yesterday.month, yesterday.day, 8), // Breakfast
         entries: [
           MealEntry(foodId: 'whole_egg', points: 2),
           MealEntry(foodId: 'oatmeal', points: 1),
