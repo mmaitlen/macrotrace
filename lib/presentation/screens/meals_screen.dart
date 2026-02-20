@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
+// New import
 import 'package:macrotrace/presentation/widgets/date_header.dart';
 import 'package:macrotrace/presentation/widgets/meal_list_item.dart';
 
@@ -30,21 +31,21 @@ class MealsScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: state.dailyMeals.length,
             itemBuilder: (context, index) {
-              final dailyMeals = state.dailyMeals[index];
-              final formattedSummary =
-                  "P: ${dailyMeals.protienPointTotal.toStringAsFixed(1)} - C: ${dailyMeals.carbohydratePointTotal.toStringAsFixed(1)} - F: ${dailyMeals.fatPointTotal.toStringAsFixed(1)}";
+              final dailyMealsUIModel = state.dailyMeals[index]; // Changed type
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DateHeader(
-                    formattedDate: dailyMeals.formattedDate,
-                    formattedSummary: formattedSummary,
+                    formattedDate: dailyMealsUIModel.formattedDate,
+                    formattedSummary: dailyMealsUIModel.formattedSummary,
                   ),
-                  ...dailyMeals.meals.map(
+                  ...dailyMealsUIModel.meals.map(
+                    // Use meals from UIModel
                     (meal) => MealListItem(
                       meal: meal,
-                      foodItemMap: state.foodItemMap,
+                      foodItemMap: dailyMealsUIModel
+                          .foodItemMap, // Use foodItemMap from UIModel
                     ),
                   ),
                 ],

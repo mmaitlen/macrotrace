@@ -15,6 +15,7 @@ import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
+import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart'; // New import
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -150,46 +151,49 @@ void main() {
       MealsState(
         status: MealsStatus.success,
         dailyMeals: [
-          DailyMeals(
-            date: testToday,
-            meals: [testMeals[0], testMeals[1]],
-            summary: {'carbohydrate': 2.0, 'protein': 8.0, 'fat': 1.5},
+          DailyMealsUIModel(
+            dailyMeals: DailyMeals(
+              date: testToday,
+              meals: [testMeals[0], testMeals[1]],
+              summary: {'carbohydrate': 2.0, 'protein': 8.0, 'fat': 1.5},
+            ),
             formattedDate: 'Today',
-            protienPointTotal: 8.0,
-            carbohydratePointTotal: 2.0,
-            fatPointTotal: 1.5,
+            formattedSummary: 'P: 8.0 C: 2.0 F: 1.5',
+            foodItemMap: {for (var item in testFoodItems) item.id: item},
           ),
-          DailyMeals(
-            date: testYesterday,
-            meals: [testMeals[2]],
-            summary: {'carbohydrate': 3.0, 'protein': 0.0, 'fat': 2.0},
+          DailyMealsUIModel(
+            dailyMeals: DailyMeals(
+              date: testYesterday,
+              meals: [testMeals[2]],
+              summary: {'carbohydrate': 3.0, 'protein': 0.0, 'fat': 2.0},
+            ),
             formattedDate: 'Yesterday',
-            protienPointTotal: 0.0,
-            carbohydratePointTotal: 3.0,
-            fatPointTotal: 2.0,
+            formattedSummary: 'P: 0.0 C: 3.0 F: 2.0',
+            foodItemMap: {for (var item in testFoodItems) item.id: item},
           ),
-          DailyMeals(
-            date: testTwoDaysAgo,
-            meals: [testMeals[3]],
-            summary: {'protein': 4.0, 'carbohydrate': 0.0, 'fat': 0.0},
+          DailyMealsUIModel(
+            dailyMeals: DailyMeals(
+              date: testTwoDaysAgo,
+              meals: [testMeals[3]],
+              summary: {'protein': 4.0, 'carbohydrate': 0.0, 'fat': 0.0},
+            ),
             formattedDate:
                 'Jul 14, 1969', // Format 'MMM d, yyyy' from DateFormat.yMMMd()
-            protienPointTotal: 4.0,
-            carbohydratePointTotal: 0.0,
-            fatPointTotal: 0.0,
+            formattedSummary: 'P: 4.0 C: 0.0 F: 0.0',
+            foodItemMap: {for (var item in testFoodItems) item.id: item},
           ),
-          DailyMeals(
-            date: testThreeDaysAgo,
-            meals: [testMeals[4]],
-            summary: {'carbohydrate': 1.0, 'protein': 0.0, 'fat': 0.0},
+          DailyMealsUIModel(
+            dailyMeals: DailyMeals(
+              date: testThreeDaysAgo,
+              meals: [testMeals[4]],
+              summary: {'carbohydrate': 1.0, 'protein': 0.0, 'fat': 0.0},
+            ),
             formattedDate:
                 'Jul 13, 1969', // Format 'MMM d, yyyy' from DateFormat.yMMMd()
-            protienPointTotal: 0.0,
-            carbohydratePointTotal: 1.0,
-            fatPointTotal: 0.0,
+            formattedSummary: 'P: 0.0 C: 1.0 F: 0.0',
+            foodItemMap: {for (var item in testFoodItems) item.id: item},
           ),
         ],
-        foodItemMap: {for (var item in testFoodItems) item.id: item},
       ),
     ],
   );

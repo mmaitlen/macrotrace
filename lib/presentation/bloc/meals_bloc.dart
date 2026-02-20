@@ -9,23 +9,24 @@ import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
 import 'package:intl/intl.dart';
-import 'package:macrotrace/domain/services/date_time_service.dart'; // New import
+import 'package:macrotrace/domain/services/date_time_service.dart';
+import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart'; // New import
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetAllMeals _getAllMeals;
   final GetFoodItems _getFoodItems;
   final GetDailySummary _getDailySummary;
-  final DateTimeService _dateTimeService; // New field
+  final DateTimeService _dateTimeService;
 
   MealsBloc({
     required GetAllMeals getAllMeals,
     required GetFoodItems getFoodItems,
     required GetDailySummary getDailySummary,
-    required DateTimeService dateTimeService, // New required parameter
+    required DateTimeService dateTimeService,
   }) : _getAllMeals = getAllMeals,
        _getFoodItems = getFoodItems,
        _getDailySummary = getDailySummary,
-       _dateTimeService = dateTimeService, // Initialize new field
+       _dateTimeService = dateTimeService,
        super(const MealsState()) {
     on<LoadMeals>(_onLoadMeals);
   }
@@ -49,50 +50,55 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
         grouped[date]!.add(meal);
       }
 
-      // Create DailyMeals objects with summaries
-      final List<DailyMeals> dailyMeals = [];
-      final now = _dateTimeService.getToday(); // Use injected service
-      final yesterday = _dateTimeService.getYesterday(); // Use injected service
-
+      // Create pure DailyMeals domain entities
+      final List<DailyMeals> pureDailyMeals = [];
       for (final date in grouped.keys) {
         final mealsForDay = grouped[date]!;
         final summary = _getDailySummary(
           mealsForDay: mealsForDay,
           allFoodItems: foodItems,
         );
+        pureDailyMeals.add(
+          DailyMeals(date: date, meals: mealsForDay, summary: summary),
+        );
+      }
 
+      // Sort pureDailyMeals descending by date
+      pureDailyMeals.sort((a, b) => b.date.compareTo(a.date));
+
+      // Transform pure DailyMeals into DailyMealsUIModel
+      final List<DailyMealsUIModel> dailyMealsUIModels = [];
+      final now = _dateTimeService.getToday();
+      final yesterday = _dateTimeService.getYesterday();
+
+      for (final dailyMeals in pureDailyMeals) {
         String formattedDate;
-        if (DateUtils.isSameDay(date, now)) {
-          // Use DateUtils.isSameDay for robust comparison
+        if (DateUtils.isSameDay(dailyMeals.date, now)) {
           formattedDate = 'Today';
-        } else if (DateUtils.isSameDay(date, yesterday)) {
-          // Use DateUtils.isSameDay
+        } else if (DateUtils.isSameDay(dailyMeals.date, yesterday)) {
           formattedDate = 'Yesterday';
         } else {
-          formattedDate = DateFormat.yMMMd().format(date);
+          formattedDate = DateFormat.yMMMd().format(dailyMeals.date);
         }
 
-        dailyMeals.add(
-          DailyMeals(
-            date: date,
-            meals: mealsForDay,
-            summary: summary,
+        final formattedSummary =
+            "P: ${dailyMeals.summary['protein']?.toStringAsFixed(1) ?? '0'} C: ${dailyMeals.summary['carbohydrate']?.toStringAsFixed(1) ?? '0'} F: ${dailyMeals.summary['fat']?.toStringAsFixed(1) ?? '0'}";
+
+        dailyMealsUIModels.add(
+          DailyMealsUIModel(
+            dailyMeals: dailyMeals,
             formattedDate: formattedDate,
-            protienPointTotal: summary['protein'] ?? 0,
-            carbohydratePointTotal: summary['carbohydrate'] ?? 0,
-            fatPointTotal: summary['fat'] ?? 0,
+            formattedSummary: formattedSummary,
+            foodItemMap:
+                foodItemMap, // Passed to UIModel as it's needed for MealListItem
           ),
         );
       }
 
-      // Sort days descending
-      dailyMeals.sort((a, b) => b.date.compareTo(a.date));
-
       emit(
         state.copyWith(
           status: MealsStatus.success,
-          dailyMeals: dailyMeals,
-          foodItemMap: foodItemMap,
+          dailyMeals: dailyMealsUIModels,
         ),
       );
     } catch (e) {
