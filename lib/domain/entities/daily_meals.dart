@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 
-class DailyMeals {
+class DailyMeals extends Equatable {
   final DateTime date;
   final List<Meal> meals;
   final Map<String, double> summary;
@@ -9,7 +10,7 @@ class DailyMeals {
   final double carbohydratePointTotal;
   final double fatPointTotal;
 
-  DailyMeals({
+  const DailyMeals({
     required this.date,
     required this.meals,
     required this.summary,
@@ -18,4 +19,15 @@ class DailyMeals {
     required this.carbohydratePointTotal,
     required this.fatPointTotal,
   });
+
+  @override
+  List<Object?> get props => [
+    date,
+    meals,
+    summary,
+    formattedDate,
+    protienPointTotal,
+    carbohydratePointTotal,
+    fatPointTotal,
+  ];
 }
