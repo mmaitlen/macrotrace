@@ -973,40 +973,35 @@
     "item": "Milk",
     "measurement": "1 cup",
     "categories": [
-      "\"protein"
-    ],
-    "notes": "Carbohydrate\""
+      "protein","carbohydrate"
+    ]
   },
   {
     "item": "Yogurt",
     "measurement": "1/2 cup",
     "categories": [
-      "\"protein"
-    ],
-    "notes": "Carbohydrate\""
+      "protein","carbohydrate"
+    ]
   },
   {
     "item": "Soybean",
     "measurement": "1/4 cup",
     "categories": [
-      "\"protein"
-    ],
-    "notes": "Carbohydrate\""
+      "protein","carbohydrate"
+    ]
   },
   {
     "item": "Soymilk",
     "measurement": "1/2 cup",
     "categories": [
-      "\"protein"
-    ],
-    "notes": "Carbohydrate\""
+      "protein","carbohydrate"
+    ]
   },
   {
     "item": "Tempeh",
     "measurement": "1-1/2 oz",
     "categories": [
-      "\"protein"
-    ],
-    "notes": "Carbohydrate\""
+      "protein","carbohydrate"
+    ]
   }
 ]
