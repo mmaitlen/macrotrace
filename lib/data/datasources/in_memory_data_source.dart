@@ -10,6 +10,7 @@ class InMemoryDataSource implements LocalDataSource {
   List<FoodItem> _foodItems = [];
   final List<Meal> _meals = [];
 
+  @override
   Future<void> init() async {
     await _loadFoodItems();
     _generateHardcodedMeals();

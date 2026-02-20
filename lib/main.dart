@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider(
-        create: (_) => sl<MealsBloc>()..add(LoadMeals()),
+        create: (_) => sl.sl<MealsBloc>()..add(LoadMeals()),
         child: const MealsScreen(),
       ),
     );

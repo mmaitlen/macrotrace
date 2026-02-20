@@ -104,6 +104,7 @@ This model represents a specific food consumed as part of a meal, linking a `Foo
     - Implement a `MealsBloc` that uses the domain-layer use cases to fetch and manage the state of the meals.
     - The UI should be a continuous, vertically scrolling list of all meals, grouped and separated by date headers.
     - Each date header should display a summary of the total consumed points (protein, carbohydrates, and fat) for that day.
+    - In the date header should display "Today" for the current date and "Yesterday" for the previous day.  All other headers show a formatted date.
     - The list should not scroll endlessly into the past; it should begin from the current date and end at the earliest meal entry provided by the data service.
 
 6.  **`feat(domain): adjust use cases for scrolling view`**
