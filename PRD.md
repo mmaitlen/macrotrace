@@ -110,3 +110,9 @@ This model represents a specific food consumed as part of a meal, linking a `Foo
 6.  **`feat(domain): adjust use cases for scrolling view`**
     - Modify the `GetMealsForDateUseCase` to a `GetAllMealsUseCase` that retrieves all meals, sorted by date.
     - The `GetDailySummaryUseCase` will now likely be used by the BLoC to calculate summaries for each day group within the list.
+
+7.  **`test(bloc): implement headless bloc test`**
+    - Create a headless `bloc_test` for the `MealsBloc` to ensure correct state transformations.
+    - Implement an injectable `DateTimeService` to abstract `DateTime.now()` and improve testability of date-sensitive logic.
+    - Introduce a `DailyMealsUIModel` in the presentation layer to separate UI concerns from domain entities, adhering to Clean Architecture principles.
+    - Ensure all tests pass and the data flow from mock data sources to the `MealsState` is correct.
