@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -5,10 +6,15 @@ import 'package:macrotrace/data/datasources/local_data_source.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
+import 'package:uuid/uuid.dart';
 
 class InMemoryDataSource implements LocalDataSource {
   List<FoodItem> _foodItems = [];
   final List<Meal> _meals = [];
+  final _mealsUpdatedController = StreamController<void>.broadcast();
+
+  @override
+  Stream<void> get mealsUpdated => _mealsUpdatedController.stream;
 
   @override
   Future<void> init() async {
@@ -19,23 +25,33 @@ class InMemoryDataSource implements LocalDataSource {
   Future<void> _loadFoodItems() async {
     final jsonString = await rootBundle.loadString('assets/food_data_v2.json');
     final List<dynamic> jsonList = json.decode(jsonString) as List;
-    _foodItems = jsonList.map((json) => FoodItem.fromJson(json as Map<String, dynamic>)).toList();
+    _foodItems = jsonList
+        .map((json) => FoodItem.fromJson(json as Map<String, dynamic>))
+        .toList();
   }
 
   void _generateHardcodedMeals() {
+    const uuid = Uuid();
     final today = DateTime.now();
     final yesterday = today.subtract(const Duration(days: 1));
 
     _meals.addAll([
       // Yesterday's Meals
       Meal(
-        timestamp: DateTime(yesterday.year, yesterday.month, yesterday.day, 8), // Breakfast
+        id: uuid.v4(),
+        timestamp: DateTime(
+          yesterday.year,
+          yesterday.month,
+          yesterday.day,
+          8,
+        ), // Breakfast
         entries: [
           MealEntry(foodId: 'whole_egg', points: 2),
           MealEntry(foodId: 'oatmeal', points: 1),
         ],
       ),
       Meal(
+        id: uuid.v4(),
         timestamp: DateTime(
           yesterday.year,
           yesterday.month,
@@ -50,6 +66,7 @@ class InMemoryDataSource implements LocalDataSource {
       ),
       // Today's Meals
       Meal(
+        id: uuid.v4(),
         timestamp: DateTime(today.year, today.month, today.day, 9), // Breakfast
         entries: [
           MealEntry(foodId: 'yogurt', points: 1),
@@ -73,5 +90,21 @@ class InMemoryDataSource implements LocalDataSource {
       await init();
     }
     return _meals;
+  }
+
+  @override
+  Future<void> saveMeal(Meal meal) async {
+    final index = _meals.indexWhere((m) => m.id == meal.id);
+    if (index != -1) {
+      _meals[index] = meal;
+    } else {
+      _meals.add(meal);
+    }
+    _mealsUpdatedController.add(null);
+  }
+
+  @override
+  void dispose() {
+    _mealsUpdatedController.close();
   }
 }

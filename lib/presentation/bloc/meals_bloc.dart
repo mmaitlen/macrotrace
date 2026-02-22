@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macrotrace/domain/entities/daily_meals.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
+import 'package:macrotrace/domain/repositories/meal_repository.dart';
 import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
@@ -17,18 +20,32 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetFoodItems _getFoodItems;
   final GetDailySummary _getDailySummary;
   final DateTimeService _dateTimeService;
+  final MealRepository _mealRepository;
+  late final StreamSubscription _mealsUpdatedSubscription;
 
   MealsBloc({
     required GetAllMeals getAllMeals,
     required GetFoodItems getFoodItems,
     required GetDailySummary getDailySummary,
     required DateTimeService dateTimeService,
+    required MealRepository mealRepository,
   }) : _getAllMeals = getAllMeals,
        _getFoodItems = getFoodItems,
        _getDailySummary = getDailySummary,
        _dateTimeService = dateTimeService,
+       _mealRepository = mealRepository,
        super(const MealsState()) {
     on<LoadMeals>(_onLoadMeals);
+
+    _mealsUpdatedSubscription = _mealRepository.mealsUpdated.listen((_) {
+      add(LoadMeals());
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _mealsUpdatedSubscription.cancel();
+    return super.close();
   }
 
   Future<void> _onLoadMeals(LoadMeals event, Emitter<MealsState> emit) async {
