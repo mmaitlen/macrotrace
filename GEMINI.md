@@ -85,11 +85,12 @@ If a task or todo I'm working on feels like a red herring, I'll ask the user for
 - When a task has been completed and a Pull Request has been created, **DO NOT delete the local branch immediately**.
 - **Stay on the feature branch** until the Pull Request has been **Approved** and merged into the default branch. This allows for any further changes or fixes requested during the review process to be easily applied.
 - Once the PR is approved and merged, you can then:
-    - Delete the local branch (e.g., `git checkout <default-branch> && git branch -D <feature-branch>`).
+    - **Pull the latest changes from the default branch (e.g., `git pull origin <default-branch>`)** to ensure your local default branch is up-to-date.
+    - Switch to the default branch (e.g., `git checkout <default-branch>`).
+    - Delete the local feature branch (e.g., `git branch -D <feature-branch>`).
     - NEVER delete the remote branch unless explicitly asked to by the repository owner.
     - Ensure you end up on the default branch of the repository.
 - Finally, inform the user that the task is complete by specifically stating "okie dokie task X is complete and branch Y is closed, I'm ready for the next task." (where Y is the name of the **merged** branch, implying the local branch has been cleaned up).
-
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
