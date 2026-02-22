@@ -58,7 +58,7 @@ class MealsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final newMealId = const Uuid().v4();
-          context.go('/meal/$newMealId');
+          context.push('/meal/$newMealId');
         },
         child: const Icon(Icons.add),
       ),

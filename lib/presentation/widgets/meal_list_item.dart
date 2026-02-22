@@ -33,7 +33,7 @@ class MealListItem extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
-                    context.go('/meal/${meal.id}');
+                    context.push('/meal/${meal.id}');
                   },
                 ),
               ],

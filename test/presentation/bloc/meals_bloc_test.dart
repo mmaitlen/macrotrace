@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:macrotrace/data/datasources/local_data_source.dart';
-import 'package:macrotrace/data/repositories/meal_repository_impl.dart';
 import 'package:macrotrace/domain/entities/daily_meals.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
@@ -15,7 +14,7 @@ import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
-import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart'; // New import
+import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -128,9 +127,13 @@ void main() {
     when(mockDateTimeService.getToday()).thenReturn(testToday);
     when(mockDateTimeService.getYesterday()).thenReturn(testYesterday);
 
-    when(mockMealRepository.getFoodItems()).thenAnswer((_) async => testFoodItems);
+    when(
+      mockMealRepository.getFoodItems(),
+    ).thenAnswer((_) async => testFoodItems);
     when(mockMealRepository.getAllMeals()).thenAnswer((_) async => testMeals);
-    when(mockMealRepository.mealsUpdated).thenAnswer((_) => const Stream.empty());
+    when(
+      mockMealRepository.mealsUpdated,
+    ).thenAnswer((_) => const Stream.empty());
 
     mealsBloc = MealsBloc(
       getAllMeals: getAllMeals,
