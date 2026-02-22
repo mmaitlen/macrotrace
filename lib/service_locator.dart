@@ -6,6 +6,9 @@ import 'package:macrotrace/domain/repositories/meal_repository.dart';
 import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
+import 'package:macrotrace/domain/usecases/get_meal_by_id.dart';
+import 'package:macrotrace/domain/usecases/save_meal.dart';
+import 'package:macrotrace/presentation/bloc/meal_form_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/domain/services/date_time_service.dart'; // New import
 import 'package:macrotrace/data/services/system_date_time_service.dart'; // New import
@@ -19,14 +22,20 @@ Future<void> init() async {
       getAllMeals: sl(),
       getFoodItems: sl(),
       getDailySummary: sl(),
-      dateTimeService: sl(), // Provide DateTimeService
+      dateTimeService: sl(),
+      mealRepository: sl(),
     ),
+  );
+  sl.registerFactory(
+    () => MealFormBloc(mealRepository: sl(), getMealById: sl(), saveMeal: sl()),
   );
 
   // Use cases
   sl.registerLazySingleton(() => GetAllMeals(sl()));
   sl.registerLazySingleton(() => GetFoodItems(sl()));
   sl.registerLazySingleton(() => GetDailySummary());
+  sl.registerLazySingleton(() => GetMealById(sl()));
+  sl.registerLazySingleton(() => SaveMeal(sl()));
 
   // Repository
   sl.registerLazySingleton<MealRepository>(

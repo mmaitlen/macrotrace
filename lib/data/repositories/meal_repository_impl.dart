@@ -17,4 +17,12 @@ class MealRepositoryImpl implements MealRepository {
   Future<List<FoodItem>> getFoodItems() {
     return localDataSource.getFoodItems();
   }
+
+  @override
+  Future<void> saveMeal(Meal meal) {
+    return localDataSource.saveMeal(meal);
+  }
+
+  @override
+  Stream<void> get mealsUpdated => localDataSource.mealsUpdated;
 }

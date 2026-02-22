@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
-// New import
 import 'package:macrotrace/presentation/widgets/date_header.dart';
 import 'package:macrotrace/presentation/widgets/meal_list_item.dart';
+import 'package:uuid/uuid.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({super.key});
@@ -53,6 +54,13 @@ class MealsScreen extends StatelessWidget {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final newMealId = const Uuid().v4();
+          context.push('/meal/$newMealId');
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

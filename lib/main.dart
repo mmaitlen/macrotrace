@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
-import 'package:macrotrace/presentation/screens/meals_screen.dart';
+import 'package:macrotrace/presentation/navigation/app_router.dart';
 import 'package:macrotrace/service_locator.dart' as sl;
 
 void main() async {
@@ -12,14 +13,16 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final GoRouter? router;
+
+  const MainApp({super.key, this.router});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocProvider(
-        create: (_) => sl.sl<MealsBloc>()..add(LoadMeals()),
-        child: const MealsScreen(),
+    return BlocProvider(
+      create: (_) => sl.sl<MealsBloc>()..add(LoadMeals()),
+      child: MaterialApp.router(
+        routerConfig: router ?? appRouter,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
@@ -22,9 +23,20 @@ class MealListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Meal at ${DateFormat.jm().format(meal.timestamp)}',
-              style: Theme.of(context).textTheme.titleSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Meal at ${DateFormat.jm().format(meal.timestamp)}',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    context.push('/meal/${meal.id}');
+                  },
+                ),
+              ],
             ),
             ...meal.entries.map((entry) {
               final foodItem = foodItemMap[entry.foodId];
