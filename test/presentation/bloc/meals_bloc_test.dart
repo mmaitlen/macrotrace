@@ -30,7 +30,6 @@ import 'meals_bloc_test.mocks.dart';
 ])
 void main() {
   late MockDateTimeService mockDateTimeService;
-  late MockLocalDataSource mockLocalDataSource;
   late MockMealRepository mockMealRepository;
   late GetAllMeals getAllMeals;
   late GetFoodItems getFoodItems;
@@ -117,7 +116,6 @@ void main() {
 
   setUp(() {
     mockDateTimeService = MockDateTimeService();
-    mockLocalDataSource = MockLocalDataSource();
     mockMealRepository = MockMealRepository();
     getAllMeals = GetAllMeals(mockMealRepository);
     getFoodItems = GetFoodItems(mockMealRepository);
