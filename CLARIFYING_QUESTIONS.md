@@ -1,4 +1,4 @@
-Round 1 Questions
+### Milestone 1 - Round 1 Questions
 
 1. Data Modeling (food_data.json): This is the most critical part. Could you define the structure for a single food item in food_data.json?
 
@@ -63,7 +63,7 @@ Notes on Proposed Plan
 2. Don't worry about SharedPreferences for persistence for V1, we're going to stick with hardcoded or in-memeory data.
 
 ---
-### Round 2 Questions
+### Milestone 1 - Round 2 Questions
 
 1.  **`FoodItem` Model Confirmation:** I will create a `food_data_v2.json` file. Does the following JSON structure meet your requirements for a single food item? It separates amount from units and cleans up the categories.
 
@@ -99,3 +99,43 @@ Notes on Proposed Plan
     *   In this example, the user consumed 2.5 points of "Turkey breast", which would equate to 2.5 oz.
 
     - this also looks good
+
+### Milestone 2 - Round 1 Questions
+
+Thank you for providing the overview for Milestone 2. Before I build out the task list and begin implementation, I'd like to clarify a few points to ensure I understand the requirements completely.
+
+1.  **Date/Time of Meal**: When creating a *new* meal, how should the `timestamp` be determined? Should it default to the current date and time? Or should the user be able to select the date and time?
+
+- lets default to current date/time for now
+
+2.  **Meal Grouping**: Meals are currently grouped by day. Should a new meal be associated with a specific day? If so, does the user select the day, or does it default to "today"?
+
+- default to today for now
+
+3.  **"Pinning" Behavior**:
+    *   When a food item is checked and "pinned" to the top, should it be removed from its original position in the list?
+    no, let's keep it in the list to reduce complexity for now
+    *   When an item is un-pinned (unchecked), should it return to its original position in the list?
+    no, let's keep it in the list to reduce complexity for now
+    *   Is there a specific order for pinned items (e.g., chronological, alphabetical)?
+    for now, lets just keep them in the order the user adds them
+
+4.  **"Edit Meal" CTA**: Where exactly should the "Edit" CTA be located on the `MealsScreen`? Should it be an icon button on each `MealListItem`?
+- display the edit icon to the right of the "Meal at xxx" text for each MealListItem card
+
+5.  **"Meal Screen" Title**: Should the "Meal Screen" have a dynamic title, such as "Create Meal" when creating and "Edit Meal" when editing?
+- yes, dynamic title would be good
+
+6.  **"Save" CTA Text**: Should the CTA text change based on the mode (e.g., "Add Meal" for create, "Save Changes" for edit)?
+- just use Save
+
+7.  **Data Refresh Mechanism**: The overview mentions "A mechanism will be needed to signal the MealBloc that new meals data is available". My proposed solution is for the "Meal Screen" to pop with a result (e.g., `true` if a meal was saved), which would then trigger the `MealsBloc` to reload its data. Is this approach acceptable, or do you have another mechanism in mind (e.g., a shared stream/service)?
+- let's go with a stream
+
+8.  **Input Validation**: Should there be any input validation for the text field (e.g., non-negative numbers only)? The overview mentions "2 significant digits" - should I enforce this with formatting or validation?
+- the portion value should be a non-negative double, ie 2.25, 3.5, 6
+9.  **Navigation Library**: The PRD mentions `go_router`. Should I use `go_router` to handle the navigation between the `MealsScreen` and the new "Meal Screen"? If so, what should the route path be for the new screen (e.g., `/meal`, `/meal/:id`)?
+- yes, use go_router with path '/meal/:id'.  use uuid when creating the id.  i assume this means the Meal object needs an id field
+
+Please let me know your thoughts on these questions. Once I have these clarifications, I will be able to create a more accurate and comprehensive task list for Milestone 2.
+

@@ -116,3 +116,74 @@ This model represents a specific food consumed as part of a meal, linking a `Foo
     - Implement an injectable `DateTimeService` to abstract `DateTime.now()` and improve testability of date-sensitive logic.
     - Introduce a `DailyMealsUIModel` in the presentation layer to separate UI concerns from domain entities, adhering to Clean Architecture principles.
     - Ensure all tests pass and the data flow from mock data sources to the `MealsState` is correct.
+
+### Milestone 2: Create/Edit Meal Screen
+
+**Overview:** Add screen that allows user to create and edit a meal.  Navigate to the Meal screen from the FAB CTA on the Meals Screen.  The Meal Screen shows the list of foods from the Food Data with a checkbox allowing the user to signify that the food is in the meal.  Once a food is selected it is pinned to the top of the list with a text field allowing the user to specify the number, as a double with 2 significant digits, of units consumed.  There should also be a CTA that is activated when at least 1 food has been selected that allows the Meal to be added to the Meals.  For Milestone 2 just use the InMemoryDataSource.  A mechinism will be needed to signal the MealBloc that new meals data is available.  Once the Meal has been persisted to the Meals list, navigate back to the Meals Screen.  Add an Edit CTA to the Meals in the Meals List to allow the user to edit the Meal via the Meal Screen.
+
+**Refined Task List:**
+
+1.  **`feat(domain): add id to meal entity`**
+    -   Add an `id` field to the `Meal` entity.
+    -   Add the `uuid` package dependency.
+
+2.  **`feat(data): implement data refresh stream`**
+    -   Add a stream to the `MealRepository` interface that emits a value when meals are updated.
+    -   Implement the stream in the `InMemoryDataSource`.
+
+3.  **`feat(bloc): listen to data refresh stream in meals_bloc`**
+    -   Update `MealsBloc` to listen to the `MealRepository`'s refresh stream.
+    -   When a new value is emitted, reload the meals.
+
+4.  **`feat(navigation): set up go_router for meal screen`**
+    -   Add `go_router` as a dependency.
+    -   Define routes for the `MealsScreen` (`/`) and the new `MealScreen` (`/meal/:id`).
+    -   Integrate `go_router` into the main application widget.
+
+5.  **`feat(ui): create meal screen shell and navigation`**
+    -   Create a new `MealScreen` widget.
+    -   Add a Floating Action Button (FAB) to the `MealsScreen` to navigate to the `MealScreen` for creating a new meal (passing a new UUID).
+    -   Add an "Edit" icon button to each `MealListItem` on the `MealsScreen` to navigate to the `MealScreen` for editing an existing meal (passing the meal's ID).
+
+6.  **`feat(bloc): create meal_form_bloc`**
+    -   Create a new BLoC (`MealFormBloc`) to manage the state of the `MealScreen`, including the list of food items, selected items, and their consumed units.
+    -   The `MealFormBloc` will fetch all food items from the `FoodDataService`.
+    -   It will also handle loading an existing meal for editing.
+
+7.  **`feat(ui): display food items on meal screen`**
+    -   Implement the UI for the `MealScreen` to display a dynamic title ("Create Meal" / "Edit Meal").
+    -   Display the list of all food items with checkboxes.
+
+8.  **`feat(ui): implement pinning and input fields`**
+    -   Implement the "pinning" logic: when a food item is checked, add it to a separate "pinned" list at the top of the screen. Do not remove it from the main list.
+    -   When an item is pinned, display a text field for entering the consumed units (non-negative double).
+    -   When an item is un-pinned, remove it from the "pinned" list.
+    -   The pinned list should maintain the order in which items were added.
+
+9.  **`feat(bloc): implement create/edit meal logic`**
+    -   Add logic to `MealFormBloc` to handle saving a meal (create or edit).
+    -   Create a `SaveMealUseCase` in the domain layer to interact with the `MealRepository`.
+    -   Update the `MealRepository` interface and its `InMemoryDataSource` implementation to support creating and editing meals (using the meal's ID). When creating a new meal, default the timestamp to the current time.
+
+10. **`feat(ui): add save CTA and navigation back`**
+    -   Add a "Save" CTA to the `MealScreen` that is enabled when at least one food item is selected.
+    -   When the CTA is pressed, trigger the save event in `MealFormBloc`.
+    -   After a meal is saved, navigate back to the `MealsScreen` using `go_router`.
+
+**Proposed Tests for Milestone 2:**
+
+*   **`test(bloc): meal_form_bloc_test.dart`**:
+    *   Test loading all food items.
+    *   Test loading an existing meal for editing.
+    *   Test selecting/unselecting food items.
+    *   Test entering consumed units.
+    *   Test saving a new meal.
+    *   Test saving an edited meal.
+*   **`test(widget): meal_screen_test.dart`**:
+    *   Test that the "Create Meal" / "Edit Meal" title is displayed correctly.
+    *   Test that the list of food items is displayed.
+    *   Test that pinning an item moves it to the top.
+    *   Test that the "Save" button is enabled/disabled correctly.
+*   **`test(navigation): go_router_test.dart`**:
+    *   Test navigation from `MealsScreen` to `MealScreen` (create and edit).
+    *   Test navigation back to `MealsScreen` after saving.
