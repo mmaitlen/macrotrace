@@ -27,11 +27,12 @@ import 'meals_bloc_test.mocks.dart';
   GetAllMeals,
   GetFoodItems,
   GetDailySummary,
+  MealRepository,
 ])
 void main() {
   late MockDateTimeService mockDateTimeService;
   late MockLocalDataSource mockLocalDataSource;
-  late MealRepository mockMealRepository;
+  late MockMealRepository mockMealRepository;
   late GetAllMeals getAllMeals;
   late GetFoodItems getFoodItems;
   late GetDailySummary getDailySummary;
@@ -72,6 +73,7 @@ void main() {
   final List<Meal> testMeals = [
     // Today's meals (July 16, 1969)
     Meal(
+      id: '1',
       timestamp: DateTime(1969, 7, 16, 8, 0),
       entries: [
         MealEntry(foodId: 'banana', points: 2.0),
@@ -79,6 +81,7 @@ void main() {
       ],
     ),
     Meal(
+      id: '2',
       timestamp: DateTime(1969, 7, 16, 12, 30),
       entries: [
         MealEntry(foodId: 'chicken_breast', points: 5.0),
@@ -87,6 +90,7 @@ void main() {
     ),
     // Yesterday's meals (July 15, 1969)
     Meal(
+      id: '3',
       timestamp: DateTime(1969, 7, 15, 9, 0),
       entries: [
         MealEntry(foodId: 'banana', points: 3.0),
@@ -95,11 +99,13 @@ void main() {
     ),
     // Two days ago meals (July 14, 1969)
     Meal(
+      id: '4',
       timestamp: DateTime(1969, 7, 14, 18, 0),
       entries: [MealEntry(foodId: 'chicken_breast', points: 4.0)],
     ),
     // Three days ago meals (July 13, 1969)
     Meal(
+      id: '5',
       timestamp: DateTime(1969, 7, 13, 10, 0),
       entries: [MealEntry(foodId: 'banana', points: 1.0)],
     ),
@@ -113,9 +119,7 @@ void main() {
   setUp(() {
     mockDateTimeService = MockDateTimeService();
     mockLocalDataSource = MockLocalDataSource();
-    mockMealRepository = MealRepositoryImpl(
-      localDataSource: mockLocalDataSource,
-    );
+    mockMealRepository = MockMealRepository();
     getAllMeals = GetAllMeals(mockMealRepository);
     getFoodItems = GetFoodItems(mockMealRepository);
     getDailySummary =
@@ -124,16 +128,16 @@ void main() {
     when(mockDateTimeService.getToday()).thenReturn(testToday);
     when(mockDateTimeService.getYesterday()).thenReturn(testYesterday);
 
-    when(
-      mockLocalDataSource.getFoodItems(),
-    ).thenAnswer((_) async => testFoodItems);
-    when(mockLocalDataSource.getAllMeals()).thenAnswer((_) async => testMeals);
+    when(mockMealRepository.getFoodItems()).thenAnswer((_) async => testFoodItems);
+    when(mockMealRepository.getAllMeals()).thenAnswer((_) async => testMeals);
+    when(mockMealRepository.mealsUpdated).thenAnswer((_) => const Stream.empty());
 
     mealsBloc = MealsBloc(
       getAllMeals: getAllMeals,
       getFoodItems: getFoodItems,
       getDailySummary: getDailySummary,
       dateTimeService: mockDateTimeService,
+      mealRepository: mockMealRepository,
     );
   });
 

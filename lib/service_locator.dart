@@ -7,6 +7,7 @@ import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
 import 'package:macrotrace/domain/usecases/get_meal_by_id.dart';
+import 'package:macrotrace/domain/usecases/save_meal.dart';
 import 'package:macrotrace/presentation/bloc/meal_form_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/domain/services/date_time_service.dart'; // New import
