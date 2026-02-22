@@ -170,6 +170,14 @@ This model represents a specific food consumed as part of a meal, linking a `Foo
     -   When the CTA is pressed, trigger the save event in `MealFormBloc`.
     -   After a meal is saved, navigate back to the `MealsScreen` using `go_router`.
 
+11. **`refactor(id): encapsulate uuid in id_service`**
+    -   Introduce an `IdService` interface and its `UuidService` implementation.
+    -   Update `Meal` entity, `InMemoryDataSource`, and `MealFormBloc` to use `IdService` for ID generation, removing direct `uuid` package usage.
+
+12. **`feat(navigation): implement navigation_service`**
+    -   Introduce a `NavigationService` abstraction to encapsulate `go_router` functionality.
+    -   Update `MealsScreen` and `MealsBloc` to utilize the `NavigationService` for all navigation actions, decoupling them from `go_router` specifics.
+
 **Proposed Tests for Milestone 2:**
 
 *   **`test(bloc): meal_form_bloc_test.dart`**:
@@ -179,11 +187,3 @@ This model represents a specific food consumed as part of a meal, linking a `Foo
     *   Test entering consumed units.
     *   Test saving a new meal.
     *   Test saving an edited meal.
-*   **`test(widget): meal_screen_test.dart`**:
-    *   Test that the "Create Meal" / "Edit Meal" title is displayed correctly.
-    *   Test that the list of food items is displayed.
-    *   Test that pinning an item moves it to the top.
-    *   Test that the "Save" button is enabled/disabled correctly.
-*   **`test(navigation): go_router_test.dart`**:
-    *   Test navigation from `MealsScreen` to `MealScreen` (create and edit).
-    *   Test navigation back to `MealsScreen` after saving.
