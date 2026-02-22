@@ -35,6 +35,7 @@ class InMemoryDataSource implements LocalDataSource {
     final today = DateTime.now();
     final yesterday = today.subtract(const Duration(days: 1));
 
+    // hardcoded meals used during initial development
     _meals.addAll([
       // Yesterday's Meals
       Meal(
@@ -94,10 +95,14 @@ class InMemoryDataSource implements LocalDataSource {
 
   @override
   Future<void> saveMeal(Meal meal) async {
+    // get meal if it exists
     final index = _meals.indexWhere((m) => m.id == meal.id);
+    // determine if we're editing existing meal or saving new meal
     if (index != -1) {
+      // save existing meal
       _meals[index] = meal;
     } else {
+      // save new meal
       _meals.add(meal);
     }
     _mealsUpdatedController.add(null);
