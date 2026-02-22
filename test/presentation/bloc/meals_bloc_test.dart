@@ -8,6 +8,7 @@ import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
 import 'package:macrotrace/domain/repositories/meal_repository.dart';
 import 'package:macrotrace/domain/services/date_time_service.dart';
+import 'package:macrotrace/domain/services/id_service.dart';
 import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
@@ -15,12 +16,15 @@ import 'package:macrotrace/presentation/bloc/meals_bloc.dart';
 import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
 import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart';
+import 'package:macrotrace/presentation/navigation/navigation_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'meals_bloc_test.mocks.dart';
 
 @GenerateMocks([
+  IdService,
+  NavigationService,
   DateTimeService,
   LocalDataSource,
   GetAllMeals,
@@ -29,6 +33,8 @@ import 'meals_bloc_test.mocks.dart';
   MealRepository,
 ])
 void main() {
+  late MockIdService mockIdService;
+  late MockNavigationService mockNavigationService;
   late MockDateTimeService mockDateTimeService;
   late MockMealRepository mockMealRepository;
   late GetAllMeals getAllMeals;
@@ -115,6 +121,8 @@ void main() {
   });
 
   setUp(() {
+    mockIdService = MockIdService();
+    mockNavigationService = MockNavigationService();
     mockDateTimeService = MockDateTimeService();
     mockMealRepository = MockMealRepository();
     getAllMeals = GetAllMeals(mockMealRepository);
@@ -137,6 +145,8 @@ void main() {
       getAllMeals: getAllMeals,
       getFoodItems: getFoodItems,
       getDailySummary: getDailySummary,
+      idService: mockIdService,
+      navigationService: mockNavigationService,
       dateTimeService: mockDateTimeService,
       mealRepository: mockMealRepository,
     );

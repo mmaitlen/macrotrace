@@ -6,12 +6,15 @@ import 'package:macrotrace/data/datasources/local_data_source.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
-import 'package:uuid/uuid.dart';
+import 'package:macrotrace/domain/services/id_service.dart'; // New import
 
 class InMemoryDataSource implements LocalDataSource {
+  final IdService _idService;
   List<FoodItem> _foodItems = [];
   final List<Meal> _meals = [];
   final _mealsUpdatedController = StreamController<void>.broadcast();
+
+  InMemoryDataSource({required IdService idService}) : _idService = idService;
 
   @override
   Stream<void> get mealsUpdated => _mealsUpdatedController.stream;
@@ -31,7 +34,6 @@ class InMemoryDataSource implements LocalDataSource {
   }
 
   void _generateHardcodedMeals() {
-    const uuid = Uuid();
     final today = DateTime.now();
     final yesterday = today.subtract(const Duration(days: 1));
 
@@ -39,7 +41,7 @@ class InMemoryDataSource implements LocalDataSource {
     _meals.addAll([
       // Yesterday's Meals
       Meal(
-        id: uuid.v4(),
+        id: _idService.generateId(),
         timestamp: DateTime(
           yesterday.year,
           yesterday.month,
@@ -52,7 +54,7 @@ class InMemoryDataSource implements LocalDataSource {
         ],
       ),
       Meal(
-        id: uuid.v4(),
+        id: _idService.generateId(),
         timestamp: DateTime(
           yesterday.year,
           yesterday.month,
@@ -67,7 +69,7 @@ class InMemoryDataSource implements LocalDataSource {
       ),
       // Today's Meals
       Meal(
-        id: uuid.v4(),
+        id: _idService.generateId(),
         timestamp: DateTime(today.year, today.month, today.day, 9), // Breakfast
         entries: [
           MealEntry(foodId: 'yogurt', points: 1),

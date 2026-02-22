@@ -2,24 +2,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
 import 'package:macrotrace/domain/repositories/meal_repository.dart';
+import 'package:macrotrace/domain/services/id_service.dart';
 import 'package:macrotrace/domain/usecases/get_meal_by_id.dart';
 import 'package:macrotrace/domain/usecases/save_meal.dart';
 import 'package:macrotrace/presentation/bloc/meal_form_event.dart';
 import 'package:macrotrace/presentation/bloc/meal_form_state.dart';
-import 'package:uuid/uuid.dart';
 
 class MealFormBloc extends Bloc<MealFormEvent, MealFormState> {
   final MealRepository _mealRepository;
   final GetMealById _getMealById;
   final SaveMeal _saveMeal;
+  final IdService _idService;
 
   MealFormBloc({
     required MealRepository mealRepository,
     required GetMealById getMealById,
     required SaveMeal saveMeal,
+    required IdService idService,
   }) : _mealRepository = mealRepository,
        _getMealById = getMealById,
        _saveMeal = saveMeal,
+       _idService = idService,
        super(const MealFormState()) {
     on<LoadMealForm>(_onLoadMealForm);
     on<ToggleFoodItem>(_onToggleFoodItem);
@@ -38,7 +41,7 @@ class MealFormBloc extends Bloc<MealFormEvent, MealFormState> {
           .toList();
 
       final meal = Meal(
-        id: state.initialMeal?.id ?? const Uuid().v4(),
+        id: state.initialMeal?.id ?? _idService.generateId(),
         timestamp: state.initialMeal?.timestamp ?? DateTime.now(),
         entries: entries,
       );

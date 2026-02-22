@@ -7,11 +7,13 @@ import 'package:macrotrace/domain/entities/meal.dart';
 class MealListItem extends StatelessWidget {
   final Meal meal;
   final Map<String, FoodItem> foodItemMap;
+  final ValueChanged<String> onEditMeal;
 
   const MealListItem({
     super.key,
     required this.meal,
     required this.foodItemMap,
+    required this.onEditMeal,
   });
 
   @override

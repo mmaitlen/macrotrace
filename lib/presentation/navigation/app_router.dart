@@ -6,10 +6,15 @@ import 'package:macrotrace/presentation/screens/meal_screen.dart';
 import 'package:macrotrace/presentation/screens/meals_screen.dart';
 import 'package:macrotrace/service_locator.dart' as sl;
 
+const homeScreenPath = '/';
+
 // GoRouter configuration
 final appRouter = GoRouter(
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const MealsScreen()),
+    GoRoute(
+      path: homeScreenPath,
+      builder: (context, state) => const MealsScreen(),
+    ),
     GoRoute(
       path: '/meal/:id',
       builder: (context, state) {

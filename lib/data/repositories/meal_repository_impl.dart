@@ -25,4 +25,10 @@ class MealRepositoryImpl implements MealRepository {
 
   @override
   Stream<void> get mealsUpdated => localDataSource.mealsUpdated;
+
+  @override
+  Future<Meal> creaeMeal() {
+    // TODO: implement creaeMeal
+    throw UnimplementedError();
+  }
 }

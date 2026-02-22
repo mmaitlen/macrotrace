@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
-import 'package:uuid/uuid.dart';
 
 class Meal extends Equatable {
   final String id;
@@ -15,7 +14,7 @@ class Meal extends Equatable {
 
   factory Meal.fromJson(Map<String, dynamic> json) {
     return Meal(
-      id: json['id'] as String? ?? const Uuid().v4(),
+      id: json['id'] as String,
       timestamp: DateTime.parse(json['timestamp'] as String),
       entries: (json['entries'] as List)
           .map((e) => MealEntry.fromJson(e as Map<String, dynamic>))

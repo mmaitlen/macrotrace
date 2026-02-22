@@ -3,17 +3,21 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i9;
 
-import 'package:macrotrace/data/datasources/local_data_source.dart' as _i4;
-import 'package:macrotrace/domain/entities/food_item.dart' as _i6;
-import 'package:macrotrace/domain/entities/meal.dart' as _i7;
+import 'package:macrotrace/data/datasources/local_data_source.dart' as _i8;
+import 'package:macrotrace/domain/entities/food_item.dart' as _i10;
+import 'package:macrotrace/domain/entities/meal.dart' as _i3;
 import 'package:macrotrace/domain/repositories/meal_repository.dart' as _i2;
-import 'package:macrotrace/domain/services/date_time_service.dart' as _i3;
-import 'package:macrotrace/domain/usecases/get_all_meals.dart' as _i8;
-import 'package:macrotrace/domain/usecases/get_daily_summary.dart' as _i10;
-import 'package:macrotrace/domain/usecases/get_food_items.dart' as _i9;
+import 'package:macrotrace/domain/services/date_time_service.dart' as _i7;
+import 'package:macrotrace/domain/services/id_service.dart' as _i4;
+import 'package:macrotrace/domain/usecases/get_all_meals.dart' as _i11;
+import 'package:macrotrace/domain/usecases/get_daily_summary.dart' as _i13;
+import 'package:macrotrace/domain/usecases/get_food_items.dart' as _i12;
+import 'package:macrotrace/presentation/navigation/navigation_service.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -41,10 +45,62 @@ class _FakeMealRepository_1 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeMeal_2 extends _i1.SmartFake implements _i3.Meal {
+  _FakeMeal_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+/// A class which mocks [IdService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIdService extends _i1.Mock implements _i4.IdService {
+  MockIdService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String generateId() =>
+      (super.noSuchMethod(
+            Invocation.method(#getId, []),
+            returnValue: _i5.dummyValue<String>(
+              this,
+              Invocation.method(#getId, []),
+            ),
+          )
+          as String);
+}
+
+/// A class which mocks [NavigationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNavigationService extends _i1.Mock implements _i6.NavigationService {
+  MockNavigationService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void back() => super.noSuchMethod(
+    Invocation.method(#back, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void goHome() => super.noSuchMethod(
+    Invocation.method(#goHome, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void mealPage(String? mealId) => super.noSuchMethod(
+    Invocation.method(#mealPage, [mealId]),
+    returnValueForMissingStub: null,
+  );
+}
+
 /// A class which mocks [DateTimeService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDateTimeService extends _i1.Mock implements _i3.DateTimeService {
+class MockDateTimeService extends _i1.Mock implements _i7.DateTimeService {
   MockDateTimeService() {
     _i1.throwOnMissingStub(this);
   }
@@ -75,52 +131,54 @@ class MockDateTimeService extends _i1.Mock implements _i3.DateTimeService {
 /// A class which mocks [LocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalDataSource extends _i1.Mock implements _i4.LocalDataSource {
+class MockLocalDataSource extends _i1.Mock implements _i8.LocalDataSource {
   MockLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Stream<void> get mealsUpdated =>
+  _i9.Stream<void> get mealsUpdated =>
       (super.noSuchMethod(
             Invocation.getter(#mealsUpdated),
-            returnValue: _i5.Stream<void>.empty(),
+            returnValue: _i9.Stream<void>.empty(),
           )
-          as _i5.Stream<void>);
+          as _i9.Stream<void>);
 
   @override
-  _i5.Future<void> init() =>
+  _i9.Future<void> init() =>
       (super.noSuchMethod(
             Invocation.method(#init, []),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i9.Future<void>.value(),
+            returnValueForMissingStub: _i9.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i9.Future<void>);
 
   @override
-  _i5.Future<List<_i6.FoodItem>> getFoodItems() =>
+  _i9.Future<List<_i10.FoodItem>> getFoodItems() =>
       (super.noSuchMethod(
             Invocation.method(#getFoodItems, []),
-            returnValue: _i5.Future<List<_i6.FoodItem>>.value(<_i6.FoodItem>[]),
+            returnValue: _i9.Future<List<_i10.FoodItem>>.value(
+              <_i10.FoodItem>[],
+            ),
           )
-          as _i5.Future<List<_i6.FoodItem>>);
+          as _i9.Future<List<_i10.FoodItem>>);
 
   @override
-  _i5.Future<List<_i7.Meal>> getAllMeals() =>
+  _i9.Future<List<_i3.Meal>> getAllMeals() =>
       (super.noSuchMethod(
             Invocation.method(#getAllMeals, []),
-            returnValue: _i5.Future<List<_i7.Meal>>.value(<_i7.Meal>[]),
+            returnValue: _i9.Future<List<_i3.Meal>>.value(<_i3.Meal>[]),
           )
-          as _i5.Future<List<_i7.Meal>>);
+          as _i9.Future<List<_i3.Meal>>);
 
   @override
-  _i5.Future<void> saveMeal(_i7.Meal? meal) =>
+  _i9.Future<void> saveMeal(_i3.Meal? meal) =>
       (super.noSuchMethod(
             Invocation.method(#saveMeal, [meal]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i9.Future<void>.value(),
+            returnValueForMissingStub: _i9.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i9.Future<void>);
 
   @override
   void dispose() => super.noSuchMethod(
@@ -132,7 +190,7 @@ class MockLocalDataSource extends _i1.Mock implements _i4.LocalDataSource {
 /// A class which mocks [GetAllMeals].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetAllMeals extends _i1.Mock implements _i8.GetAllMeals {
+class MockGetAllMeals extends _i1.Mock implements _i11.GetAllMeals {
   MockGetAllMeals() {
     _i1.throwOnMissingStub(this);
   }
@@ -149,18 +207,18 @@ class MockGetAllMeals extends _i1.Mock implements _i8.GetAllMeals {
           as _i2.MealRepository);
 
   @override
-  _i5.Future<List<_i7.Meal>> call() =>
+  _i9.Future<List<_i3.Meal>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i5.Future<List<_i7.Meal>>.value(<_i7.Meal>[]),
+            returnValue: _i9.Future<List<_i3.Meal>>.value(<_i3.Meal>[]),
           )
-          as _i5.Future<List<_i7.Meal>>);
+          as _i9.Future<List<_i3.Meal>>);
 }
 
 /// A class which mocks [GetFoodItems].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetFoodItems extends _i1.Mock implements _i9.GetFoodItems {
+class MockGetFoodItems extends _i1.Mock implements _i12.GetFoodItems {
   MockGetFoodItems() {
     _i1.throwOnMissingStub(this);
   }
@@ -177,26 +235,28 @@ class MockGetFoodItems extends _i1.Mock implements _i9.GetFoodItems {
           as _i2.MealRepository);
 
   @override
-  _i5.Future<List<_i6.FoodItem>> call() =>
+  _i9.Future<List<_i10.FoodItem>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i5.Future<List<_i6.FoodItem>>.value(<_i6.FoodItem>[]),
+            returnValue: _i9.Future<List<_i10.FoodItem>>.value(
+              <_i10.FoodItem>[],
+            ),
           )
-          as _i5.Future<List<_i6.FoodItem>>);
+          as _i9.Future<List<_i10.FoodItem>>);
 }
 
 /// A class which mocks [GetDailySummary].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetDailySummary extends _i1.Mock implements _i10.GetDailySummary {
+class MockGetDailySummary extends _i1.Mock implements _i13.GetDailySummary {
   MockGetDailySummary() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   Map<String, double> call({
-    required List<_i7.Meal>? mealsForDay,
-    required List<_i6.FoodItem>? allFoodItems,
+    required List<_i3.Meal>? mealsForDay,
+    required List<_i10.FoodItem>? allFoodItems,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#call, [], {
@@ -217,35 +277,47 @@ class MockMealRepository extends _i1.Mock implements _i2.MealRepository {
   }
 
   @override
-  _i5.Stream<void> get mealsUpdated =>
+  _i9.Stream<void> get mealsUpdated =>
       (super.noSuchMethod(
             Invocation.getter(#mealsUpdated),
-            returnValue: _i5.Stream<void>.empty(),
+            returnValue: _i9.Stream<void>.empty(),
           )
-          as _i5.Stream<void>);
+          as _i9.Stream<void>);
 
   @override
-  _i5.Future<List<_i6.FoodItem>> getFoodItems() =>
+  _i9.Future<List<_i10.FoodItem>> getFoodItems() =>
       (super.noSuchMethod(
             Invocation.method(#getFoodItems, []),
-            returnValue: _i5.Future<List<_i6.FoodItem>>.value(<_i6.FoodItem>[]),
+            returnValue: _i9.Future<List<_i10.FoodItem>>.value(
+              <_i10.FoodItem>[],
+            ),
           )
-          as _i5.Future<List<_i6.FoodItem>>);
+          as _i9.Future<List<_i10.FoodItem>>);
 
   @override
-  _i5.Future<List<_i7.Meal>> getAllMeals() =>
+  _i9.Future<List<_i3.Meal>> getAllMeals() =>
       (super.noSuchMethod(
             Invocation.method(#getAllMeals, []),
-            returnValue: _i5.Future<List<_i7.Meal>>.value(<_i7.Meal>[]),
+            returnValue: _i9.Future<List<_i3.Meal>>.value(<_i3.Meal>[]),
           )
-          as _i5.Future<List<_i7.Meal>>);
+          as _i9.Future<List<_i3.Meal>>);
 
   @override
-  _i5.Future<void> saveMeal(_i7.Meal? meal) =>
+  _i9.Future<_i3.Meal> creaeMeal() =>
+      (super.noSuchMethod(
+            Invocation.method(#creaeMeal, []),
+            returnValue: _i9.Future<_i3.Meal>.value(
+              _FakeMeal_2(this, Invocation.method(#creaeMeal, [])),
+            ),
+          )
+          as _i9.Future<_i3.Meal>);
+
+  @override
+  _i9.Future<void> saveMeal(_i3.Meal? meal) =>
       (super.noSuchMethod(
             Invocation.method(#saveMeal, [meal]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i9.Future<void>.value(),
+            returnValueForMissingStub: _i9.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i9.Future<void>);
 }

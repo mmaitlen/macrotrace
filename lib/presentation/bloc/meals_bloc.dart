@@ -6,6 +6,7 @@ import 'package:macrotrace/domain/entities/daily_meals.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/repositories/meal_repository.dart';
+import 'package:macrotrace/domain/services/id_service.dart';
 import 'package:macrotrace/domain/usecases/get_all_meals.dart';
 import 'package:macrotrace/domain/usecases/get_daily_summary.dart';
 import 'package:macrotrace/domain/usecases/get_food_items.dart';
@@ -13,12 +14,15 @@ import 'package:macrotrace/presentation/bloc/meals_event.dart';
 import 'package:macrotrace/presentation/bloc/meals_state.dart';
 import 'package:intl/intl.dart';
 import 'package:macrotrace/domain/services/date_time_service.dart';
-import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart'; // New import
+import 'package:macrotrace/presentation/models/daily_meals_ui_model.dart';
+import 'package:macrotrace/presentation/navigation/navigation_service.dart';
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetAllMeals _getAllMeals;
   final GetFoodItems _getFoodItems;
   final GetDailySummary _getDailySummary;
+  final IdService _idService;
+  final NavigationService _navigationService;
   final DateTimeService _dateTimeService;
   final MealRepository _mealRepository;
   late final StreamSubscription _mealsUpdatedSubscription;
@@ -27,15 +31,21 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     required GetAllMeals getAllMeals,
     required GetFoodItems getFoodItems,
     required GetDailySummary getDailySummary,
+    required IdService idService,
+    required NavigationService navigationService,
     required DateTimeService dateTimeService,
     required MealRepository mealRepository,
   }) : _getAllMeals = getAllMeals,
        _getFoodItems = getFoodItems,
        _getDailySummary = getDailySummary,
+       _idService = idService,
+       _navigationService = navigationService,
        _dateTimeService = dateTimeService,
        _mealRepository = mealRepository,
        super(const MealsState()) {
     on<LoadMeals>(_onLoadMeals);
+    on<CreateMeal>(_onCreateMeal);
+    on<EditMeal>(_onEditMeal);
 
     _mealsUpdatedSubscription = _mealRepository.mealsUpdated.listen((_) {
       add(LoadMeals());
@@ -46,6 +56,14 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
   Future<void> close() {
     _mealsUpdatedSubscription.cancel();
     return super.close();
+  }
+
+  void _onCreateMeal(CreateMeal event, Emitter<MealsState> emit) {
+    _navigationService.mealPage(_idService.generateId());
+  }
+
+  void _onEditMeal(EditMeal event, Emitter<MealsState> emit) {
+    _navigationService.mealPage(event.mealId);
   }
 
   Future<void> _onLoadMeals(LoadMeals event, Emitter<MealsState> emit) async {
