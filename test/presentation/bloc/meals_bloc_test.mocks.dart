@@ -7,6 +7,7 @@ import 'dart:async' as _i8;
 
 import 'package:macrotrace/data/datasources/local_data_source.dart' as _i7;
 import 'package:macrotrace/domain/entities/food_item.dart' as _i9;
+import 'package:macrotrace/domain/entities/macro_type.dart' as _i14;
 import 'package:macrotrace/domain/entities/meal.dart' as _i10;
 import 'package:macrotrace/domain/repositories/meal_repository.dart' as _i2;
 import 'package:macrotrace/domain/services/date_time_service.dart' as _i6;
@@ -245,7 +246,7 @@ class MockGetDailySummary extends _i1.Mock implements _i13.GetDailySummary {
   }
 
   @override
-  Map<String, double> call({
+  Map<_i14.MacroType, double> call({
     required List<_i10.Meal>? mealsForDay,
     required List<_i9.FoodItem>? allFoodItems,
   }) =>
@@ -254,9 +255,9 @@ class MockGetDailySummary extends _i1.Mock implements _i13.GetDailySummary {
               #mealsForDay: mealsForDay,
               #allFoodItems: allFoodItems,
             }),
-            returnValue: <String, double>{},
+            returnValue: <_i14.MacroType, double>{},
           )
-          as Map<String, double>);
+          as Map<_i14.MacroType, double>);
 }
 
 /// A class which mocks [MealRepository].

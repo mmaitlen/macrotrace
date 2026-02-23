@@ -1,15 +1,16 @@
 import 'package:macrotrace/domain/entities/food_item.dart';
+import 'package:macrotrace/domain/entities/macro_type.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 
 class GetDailySummary {
-  Map<String, double> call({
+  Map<MacroType, double> call({
     required List<Meal> mealsForDay,
     required List<FoodItem> allFoodItems,
   }) {
-    final summary = <String, double>{
-      'protein': 0.0,
-      'carbohydrate': 0.0,
-      'fat': 0.0,
+    final summary = <MacroType, double>{
+      MacroType.protein: 0.0,
+      MacroType.carbohydrate: 0.0,
+      MacroType.fat: 0.0,
     };
 
     if (allFoodItems.isEmpty) return summary;

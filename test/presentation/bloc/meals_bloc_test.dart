@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:macrotrace/data/datasources/local_data_source.dart';
 import 'package:macrotrace/domain/entities/daily_meals.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
+import 'package:macrotrace/domain/entities/macro_type.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
 import 'package:macrotrace/domain/repositories/meal_repository.dart';
@@ -55,21 +56,21 @@ void main() {
       name: 'Banana',
       measurementAmount: 1.0,
       measurementUnit: 'each',
-      macroTypes: ['carbohydrate'],
+      macroTypes: [MacroType.carbohydrate],
     ),
     FoodItem(
       id: 'chicken_breast',
       name: 'Chicken Breast',
       measurementAmount: 4.0,
       measurementUnit: 'oz',
-      macroTypes: ['protein'],
+      macroTypes: [MacroType.protein],
     ),
     FoodItem(
       id: 'avocado',
       name: 'Avocado',
       measurementAmount: 0.5,
       measurementUnit: 'each',
-      macroTypes: ['fat'],
+      macroTypes: [MacroType.fat],
     ),
   ];
 
@@ -170,7 +171,7 @@ void main() {
             dailyMeals: DailyMeals(
               date: testToday,
               meals: [testMeals[0], testMeals[1]],
-              summary: {'carbohydrate': 2.0, 'protein': 8.0, 'fat': 1.5},
+              summary: {MacroType.carbohydrate: 2.0, MacroType.protein: 8.0, MacroType.fat: 1.5},
             ),
             formattedDate: 'Today',
             formattedSummary: 'P: 8.0 C: 2.0 F: 1.5',
@@ -180,7 +181,7 @@ void main() {
             dailyMeals: DailyMeals(
               date: testYesterday,
               meals: [testMeals[2]],
-              summary: {'carbohydrate': 3.0, 'protein': 0.0, 'fat': 2.0},
+              summary: {MacroType.carbohydrate: 3.0, MacroType.protein: 0.0, MacroType.fat: 2.0},
             ),
             formattedDate: 'Yesterday',
             formattedSummary: 'P: 0.0 C: 3.0 F: 2.0',
@@ -190,7 +191,7 @@ void main() {
             dailyMeals: DailyMeals(
               date: testTwoDaysAgo,
               meals: [testMeals[3]],
-              summary: {'protein': 4.0, 'carbohydrate': 0.0, 'fat': 0.0},
+              summary: {MacroType.protein: 4.0, MacroType.carbohydrate: 0.0, MacroType.fat: 0.0},
             ),
             formattedDate:
                 'Jul 14, 1969', // Format 'MMM d, yyyy' from DateFormat.yMMMd()
@@ -201,7 +202,7 @@ void main() {
             dailyMeals: DailyMeals(
               date: testThreeDaysAgo,
               meals: [testMeals[4]],
-              summary: {'carbohydrate': 1.0, 'protein': 0.0, 'fat': 0.0},
+              summary: {MacroType.carbohydrate: 1.0, MacroType.protein: 0.0, MacroType.fat: 0.0},
             ),
             formattedDate:
                 'Jul 13, 1969', // Format 'MMM d, yyyy' from DateFormat.yMMMd()
