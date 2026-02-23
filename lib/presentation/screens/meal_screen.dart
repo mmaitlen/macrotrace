@@ -65,6 +65,7 @@ class MealScreen extends StatelessWidget {
                       if (isSelected) {
                         final points = state.selectedFoodEntries[foodItem.id]!;
                         return ListTile(
+                          key: ValueKey(foodItem.id),
                           title: Text(foodItem.name),
                           leading: IconButton(
                             icon: const Icon(Icons.remove_circle),
@@ -79,10 +80,8 @@ class MealScreen extends StatelessWidget {
                           ),
                           trailing: SizedBox(
                             width: 100,
-                            child: TextField(
-                              controller: TextEditingController(
-                                text: points.toString(),
-                              ),
+                            child: TextFormField(
+                              initialValue: points.toString(),
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
                                 final newPoints = double.tryParse(value);
@@ -100,6 +99,7 @@ class MealScreen extends StatelessWidget {
                         );
                       } else {
                         return ListTile(
+                          key: ValueKey(foodItem.id),
                           title: Text(foodItem.name),
                           trailing: Checkbox(
                             value: isSelected,
