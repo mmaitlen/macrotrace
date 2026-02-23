@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macrotrace/domain/entities/daily_meals.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
+import 'package:macrotrace/domain/entities/macro_type.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/repositories/meal_repository.dart';
 import 'package:macrotrace/domain/services/id_service.dart';
@@ -117,7 +118,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
         }
 
         final formattedSummary =
-            "P: ${dailyMeals.summary['protein']?.toStringAsFixed(1) ?? '0'} C: ${dailyMeals.summary['carbohydrate']?.toStringAsFixed(1) ?? '0'} F: ${dailyMeals.summary['fat']?.toStringAsFixed(1) ?? '0'}";
+            "P: ${dailyMeals.summary[MacroType.protein]?.toStringAsFixed(1) ?? '0'} C: ${dailyMeals.summary[MacroType.carbohydrate]?.toStringAsFixed(1) ?? '0'} F: ${dailyMeals.summary[MacroType.fat]?.toStringAsFixed(1) ?? '0'}";
 
         dailyMealsUIModels.add(
           DailyMealsUIModel(

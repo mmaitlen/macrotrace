@@ -1,9 +1,11 @@
+import 'package:macrotrace/domain/entities/macro_type.dart';
+
 class FoodItem {
   final String id;
   final String name;
   final double measurementAmount;
   final String measurementUnit;
-  final List<String> macroTypes;
+  final List<MacroType> macroTypes;
 
   FoodItem({
     required this.id,
@@ -19,7 +21,10 @@ class FoodItem {
       name: json['name'] as String,
       measurementAmount: (json['measurement_amount'] as num).toDouble(),
       measurementUnit: json['measurement_unit'] as String,
-      macroTypes: List<String>.from(json['macro_types'] as List),
+      macroTypes:
+          (json['macro_types'] as List)
+              .map((e) => MacroType.fromString(e as String))
+              .toList(),
     );
   }
 }
