@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
 import 'package:macrotrace/domain/entities/meal.dart';
@@ -34,9 +33,7 @@ class MealListItem extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () {
-                    context.push('/meal/${meal.id}');
-                  },
+                  onPressed: () => onEditMeal(meal.id),
                 ),
               ],
             ),
