@@ -28,7 +28,16 @@ class MealScreen extends StatelessWidget {
               builder: (context) {
                 if (state.status == MealFormStatus.loading ||
                     state.status == MealFormStatus.initial) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 16),
+                        Text('Loading food data...'),
+                      ],
+                    ),
+                  );
                 }
                 if (state.status == MealFormStatus.failure) {
                   return Center(

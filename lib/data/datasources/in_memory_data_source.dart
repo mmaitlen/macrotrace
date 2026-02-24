@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:macrotrace/data/datasources/local_data_source.dart';
 import 'package:macrotrace/domain/entities/food_item.dart';
@@ -8,11 +9,19 @@ import 'package:macrotrace/domain/entities/meal.dart';
 import 'package:macrotrace/domain/entities/meal_entry.dart';
 import 'package:macrotrace/domain/services/id_service.dart'; // New import
 
+List<FoodItem> _parseFoodItems(String jsonString) {
+  final List<dynamic> jsonList = json.decode(jsonString) as List;
+  return jsonList
+      .map((item) => FoodItem.fromJson(item as Map<String, dynamic>))
+      .toList();
+}
+
 class InMemoryDataSource implements LocalDataSource {
   final IdService _idService;
   List<FoodItem> _foodItems = [];
   final List<Meal> _meals = [];
   final _mealsUpdatedController = StreamController<void>.broadcast();
+  late final Future<void> _foodItemsFuture;
 
   InMemoryDataSource({required IdService idService}) : _idService = idService;
 
@@ -21,16 +30,13 @@ class InMemoryDataSource implements LocalDataSource {
 
   @override
   Future<void> init() async {
-    await _loadFoodItems();
+    _foodItemsFuture = _loadFoodItems();
     _generateHardcodedMeals();
   }
 
   Future<void> _loadFoodItems() async {
     final jsonString = await rootBundle.loadString('assets/food_data_v2.json');
-    final List<dynamic> jsonList = json.decode(jsonString) as List;
-    _foodItems = jsonList
-        .map((json) => FoodItem.fromJson(json as Map<String, dynamic>))
-        .toList();
+    _foodItems = await compute(_parseFoodItems, jsonString);
   }
 
   void _generateHardcodedMeals() {
@@ -81,9 +87,7 @@ class InMemoryDataSource implements LocalDataSource {
 
   @override
   Future<List<FoodItem>> getFoodItems() async {
-    if (_foodItems.isEmpty) {
-      await init();
-    }
+    await _foodItemsFuture;
     return _foodItems;
   }
 
