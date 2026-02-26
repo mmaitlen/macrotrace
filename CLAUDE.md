@@ -71,12 +71,12 @@ If a task or todo I'm working on feels like a red herring, I'll ask the user for
 - **Repository Owner:** `mmaitlen`
 - **Repository Name:** `macrotrace`
 - **Repository URL:** `https://github.com/mmaitlen/macrotrace`
-- **Agent GitHub Username for PRs:** `GeminiAgent-BobDog`
+- **Agent GitHub Username for PRs:** `BobDogAgent`
 
 ## Code Change Workflow
 - All code changes WILL be done through a dedicated git branch and NEVER directly on the default branch.
 - Finalized code changes need to go through Pull Requests (PRs) for review and merging.
-- The user wants all future commits to be made by 'GeminiAgent-BobDog'.
+- The user wants all future commits to be made by 'BobDogAgent'.
 - Always ensure the feature branch is pushed to the remote repository before attempting to create a Pull Request.
 - Always check on GitHub that a branch has a PR that has been Approved before merging the branch into the default main branch
 
